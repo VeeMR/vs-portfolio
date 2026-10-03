@@ -1,0 +1,5 @@
+documents/video/
+*.mp4\*.mov
+documents/videos/
+*.mp4
+*.mov

@@ -1,0 +1,536 @@
+:root {
+    --bg: #171f21;
+    --text: #fffbeb;
+    --text-soft: rgba(255, 251, 235, 0.8);
+    --gold: #ccad81;
+    --mint-tag: rgba(190, 229, 191, 0.35);
+    --mint-panel: rgba(190, 229, 191, 0.2);
+    --max-width: 1216px;
+    --nav-h: 79px;
+    --mint: #bee5bf;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth;}
+
+section {
+    padding: 3rem 1.5rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+a { color: inherit; text-decoration: none; }
+
+body {
+    font-family: 'Caladea', Cambria, Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    font-size: 1.125rem;
+}
+
+.gold { color: var(--gold); }
+
+/* --- NAV --- */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-h);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.25rem;
+    background: var(--bg);
+}
+.nav-logo { font-size: clamp(1.4rem, 3.5vw, 2.5rem); }
+.nav nav { display: flex; gap: 2.5rem; }
+.nav nav a { font-size: 1.5625rem; transition: color 0.2s; }
+.nav nav a:hover { color: var(--gold); }
+
+/* stops sticky nav covering section headings when jumping to them */
+section { scroll-margin-top: var(--nav-h); }
+
+/* --- HERO --- */
+.hero {
+    position: relative; 
+    max-width: none;
+    min-height: 560px;
+    padding: 0 3.7rem 1.75rem;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+.hero-video,
+.hero-media,
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.hero-video, .hero-media { object-fit: cover; }
+.hero-overlay { background: rgba(23, 31, 33, 0.6); }
+.hero-content { position: relative; }
+
+.hero h1 { font-size: clamp(2.5rem, 6vw, 3.75rem); font-weight: 700; line-height: 1.1; }
+.hero-subtitle { font-size: clamp(1.1rem, 2.5vw, 1.5625rem); margin-bottom: 1rem; }
+
+.hero-actions { display: flex; align-items: center; gap: 1rem; }
+
+.btn {
+  display: inline-block;
+  background: var(--mint);
+  color: var(--bg);
+  font-size: 1.5625rem;
+  padding: 0.5rem 1.75rem;
+  border-radius: 5px;
+  transition: transform 0.2s, filter 0.2s;
+}
+.btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+
+.icon-link img {
+  width: 50px;
+  height: 50px;
+  display: block;
+  object-fit: contain;            
+  transition: transform 0.2s;
+}
+.icon-link:hover img { transform: scale(1.1); }
+
+/* LinkedIn PNG has less built-in padding, so shrink it to match itch.io */
+.icon-link img[src*="linkedin"] { padding: 4px; }
+
+/* --- SECTION HEADINGS --- */
+.section-title {
+    font-size: clamp(1.9rem, 4vw, 2.5rem);
+    font-weight: 400;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1.5px solid var(--gold);
+    margin-bottom: 1.75rem;
+}
+
+/* --- ABOUT --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 325px;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.about-text { font-size: clamp(1.05rem, 2vw, 1.5625rem); }
+.about-text p { margin-bottom: 1.5rem; }
+
+.about-photo {
+    width: 100%;
+    aspect-ratio: 325 / 472;
+    object-fit: cover;
+    border: 2px solid var(--gold);
+    border-radius: 5px;
+}
+
+.location-pill {
+  display: inline-flex;             
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1.25rem 0.5rem 0.75rem;
+  background: var(--mint-panel);
+  border-radius: 10px;
+}
+
+.location-pill img { width: 42px; height: 42px; }
+.location-pill div { display: flex; flex-direction: column; line-height: 1.2; }
+.location-label { font-size: 1.25rem; color: rgba(255, 251, 235, 0.5); }
+.location-place { font-size: 1.25rem; }
+
+
+/* --- PROJECTS --- */
+.project-card {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+}
+
+.project-image {
+    display: block;
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 360 / 298;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+.project-image:hover img { transform: scale(1.05); }
+
+.project-info { font-size: 1.25rem; line-height: 1.5; }
+.project-title {
+    font-size: clamp(1.4rem, 3vw, 1.875rem);
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+}
+.project-info p { margin-bottom: 1rem; }
+
+.project-meta { list-style: none; margin-bottom: 1rem; }
+
+.project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.project-buttons { display: flex; gap: 1.25rem; }
+
+
+.btn-sm {
+    font-size: 1.25rem;
+    height: 40px;                 /* same height as the tags (her Figma: 39-40px) */
+    padding: 0 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.btn-sm img { width: 24px; height: 24px; }
+
+.tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;    /* tags hug the right edge, buttons stay left */
+    gap: 5px;
+}
+.tags li {
+    background: var(--mint-tag);
+    color: var(--text-soft);
+    height: 40px;                 /* same height as the buttons */
+    display: flex;
+    align-items: center;          /* text vertically centred in the 40px box */
+    padding: 0 0.6rem;
+    border-radius: 5px;
+    font-size: 1.05rem;           /* small enough that all 5 tags fit beside the buttons */
+    white-space: nowrap;          /* "Agile & Scrum" stays on one line */
+}
+
+/* --- TESTIMONIALS --*/
+.testimonial {
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+.testimonial-author { display: flex; flex-direction: column; gap: 1rem; }
+.testimonial-name { font-size: 1.5625rem; color: var(--gold); line-height: 1.3; }
+.testimonial-context { font-size: 1rem; font-style: italic; }
+.testimonial-quote { font-size: 1.25rem; line-height: 1.5; }
+/* --- CONTACT --- */
+.contact-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;            
+    gap: 1.5rem 3rem;           
+    padding-top: 1.75rem;
+}
+.contact-list li { display: flex; align-items: center; gap: 1rem; }
+.contact-list img { width: 40px; height: 40px; object-fit: contain; }
+.contact-list a {
+    font-size: 1.5625rem;
+    color: var(--gold);
+    transition: opacity 0.2s;
+}
+.contact-list a:hover { opacity: 0.75; }
+.underline { text-decoration: underline; text-underline-offset: 4px; }
+
+/* --- FOOTER --- */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: rgba(255, 251, 235, 0.5);
+  font-size: 1rem;
+}
+
+/* --- HAMBURGER --- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.nav-toggle span {
+  width: 28px;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ---------- PROJECT PAGES ---------- */
+.hero--project { min-height: 465px; }
+.hero--project h1 { font-size: clamp(2rem, 4vw, 2.9rem); }
+.hero--project .hero-overlay { background: rgba(23, 31, 33, 0.4); }
+
+/* overview */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 392px;
+  gap: 2rem;
+  align-items: start;
+}
+.overview-text { font-size: 1.25rem; }
+.overview-text p { margin-bottom: 1.25rem; }
+
+.overview-side { display: flex; flex-direction: column; gap: 1.25rem; }
+.info-card {
+  position: relative;
+  background: var(--gold);
+  color: var(--bg);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  font-size: 1.125rem;
+}
+.info-card ul { list-style: none; }
+.info-icon {                         /* speech-bubble icon peeking over the corner */
+  position: absolute;
+  top: -1.4rem;
+  left: -1.4rem;
+  width: 50px;
+}
+.client-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: visible;
+}
+.client-card img { width: 86px; margin: -1.5rem -0.5rem -1.5rem 0; }  /* logo overhangs the card */
+.client-card .client-logo--wide { width: 120px; margin: 0; }          /* Hutton + Sumo logos */
+
+/* video: 16:9 box that scales with the page */
+.video-wrap {
+  max-width: 850px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.video-wrap iframe { width: 100%; height: 100%; border: 0; }
+
+/* production */
+.production-intro { font-size: 1.25rem; margin-bottom: 2.5rem; }
+
+.timeline {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.timeline-title { font-size: 1.75rem; font-weight: 400; color: var(--gold); line-height: 1.1; }
+
+.timeline-phases,
+.timeline-milestones {
+  list-style: none;
+  display: grid;
+  grid-auto-flow: column;            /* one column per item, however many there are */
+  grid-auto-columns: 1fr;
+  text-align: center;
+}
+/* phases sit between the dots: inset by half a milestone column each side */
+.timeline-phases {
+  padding: 0 calc(50% / var(--steps));
+  color: var(--gold);
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+.timeline-milestones { position: relative; font-size: 1.05rem; }
+.timeline-milestones li { display: flex; flex-direction: column; align-items: center; }
+.milestone-label { min-height: 1.6em; }   /* keeps dots aligned even when a label is empty */
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text);
+  margin: 0.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+/* the line through the dots, from the first dot's centre to the last */
+.timeline-milestones::before {
+  content: "";
+  position: absolute;
+  top: calc(1.6em + 0.5rem + 4px);
+  left: calc(50% / var(--steps));
+  right: calc(50% / var(--steps));
+  height: 1.5px;
+  background: var(--text);
+}
+
+.production-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+.contributions { font-size: 1.125rem; }
+.contributions h3 { font-size: 1.125rem; font-weight: 700; margin: 1.5rem 0 0.4rem; }
+.contributions h3:first-child { margin-top: 0; }
+.contributions ul { padding-left: 1.25rem; }
+
+.gallery {
+  border-left: 1.5px solid var(--gold);   
+  padding-left: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.gallery figure {
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.gallery img { width: 100%; display: block; }
+.gallery figcaption {                       
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 0.1rem 0.5rem;
+  background: rgba(23, 31, 33, 0.55);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.gallery--six {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-flow: dense;
+  gap: 1.25rem;
+}
+.gallery--six img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.span-2 { grid-column: span 2; }
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+.span-6 { grid-column: span 6; }
+.gallery--six .tall { grid-row: span 2; }
+.gallery .portrait { max-width: 262px; }
+
+/* potato extras */
+.btn-download { margin-top: 1.5rem; }
+.article-links { list-style: none; margin-top: 2rem; }
+.article-links li { display: flex; align-items: center; gap: 1rem; }
+.article-links img { width: 50px; }
+
+
+/* ---------- GAME SHOWCASING ---------- */
+.showcase-list { padding-left: 1.25rem; margin-bottom: 2rem; font-size: 1.25rem; }
+
+.showcase figure {
+  position: relative;               
+  border: 2px solid var(--gold);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.showcase img {
+  position: absolute;               
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.showcase-top {
+  display: grid;
+  grid-template-columns: 569fr 596fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.showcase-left { display: flex; flex-direction: column; gap: 1.25rem; }
+.sc-agt { aspect-ratio: 569 / 227; }
+
+.showcase-pair {
+  display: grid;
+  grid-template-columns: 329fr 214fr;
+  gap: 1.25rem;
+}
+.sc-pair-first { aspect-ratio: 329 / 247; }   
+
+/* bottom row */
+.showcase-bottom {
+  display: grid;
+  grid-template-columns: 252fr 252fr 648fr;
+  gap: 1.25rem;
+}
+.sc-portrait { aspect-ratio: 252 / 336; }
+
+/* --- TABLET & BELOW (<= 900px) --- */
+@media (max-width: 900px) {
+    .nav-toggle { display: flex; }
+
+    .nav nav {
+        display: none;
+        position: absolute;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--bg);
+        border-bottom: 1.5px solid var(--gold);
+    }
+    .nav nav.open { display: flex; }
+    .nav nav a { padding: 1rem 1.5rem; }
+
+    .about-grid,
+    .project-card,
+    .testimonial { grid-template-columns: 1fr; }
+
+    .about-photo {
+        order: -1;              /* move photo above text */
+        max-width: 280px;
+        justify-self: center;
+    }
+    .project-image { max-width: 500px; }
+    .project-card { gap: 1.25rem; }
+
+    .overview-grid,
+    .production-grid,
+    .timeline { grid-template-columns: 1fr; }
+    .timeline-title { margin-bottom: 1rem; }
+    .gallery { border-left: none; padding-left: 0; }
+    .overview-side { max-width: 420px; margin-top: 1rem; }
+}
+
+/* --- PHONES (<= 600px) --- */
+@media (max-width: 600px) {
+    section { padding: 2.5rem 1rem; }
+    .hero { min-height: 480px; padding: 0 1.25rem 1.5rem; }
+    .btn { font-size: 1.25rem; }
+    .project-info, .tags li, .btn-sm { font-size: 1.05rem; }
+    .project-footer { flex-direction: column; align-items: flex-start; }
+    .tags { justify-content: flex-start; }
+    .contact-list a { font-size: 1.15rem; overflow-wrap: anywhere; }
+    .gallery--six figure { grid-column: auto; grid-row: auto; }
+    .showcase-top { grid-template-columns: 1fr; }
+    .sc-main { aspect-ratio: 4 / 3; }
+    .showcase-bottom { grid-template-columns: 1fr 1fr; }
+    .showcase-bottom figure:last-child { grid-column: span 2; aspect-ratio: 16 / 9; }
+}
+
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* for people who've turned off animations in their OS settings */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { opacity: 1; transform: none; transition: none; }
+}
